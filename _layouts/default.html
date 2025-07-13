@@ -7,5 +7,26 @@
       {{ content }}
     </main>
     {% include footer.html %}
+    
+    <!-- Reading Progress Bar for Posts -->
+    {% if page.layout == 'post' %}
+    <div class="reading-progress" id="reading-progress"></div>
+    <script>
+      // Reading progress indicator
+      window.addEventListener('scroll', function() {
+        const article = document.querySelector('article');
+        if (!article) return;
+        
+        const scrollTop = window.pageYOffset;
+        const docHeight = article.offsetHeight;
+        const winHeight = window.innerHeight;
+        const scrollPercent = scrollTop / (docHeight - winHeight);
+        const scrollPercentRounded = Math.round(scrollPercent * 100);
+        
+        const progressBar = document.getElementById('reading-progress');
+        progressBar.style.transform = `scaleX(${Math.min(scrollPercent, 1)})`;
+      });
+    </script>
+    {% endif %}
   </body>
 </html>

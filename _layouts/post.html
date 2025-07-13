@@ -2,6 +2,95 @@
 layout: default
 ---
 <article>
-  <h1>{{ page.title }}</h1>
-  <p class="post-meta">{{ page.date | date: "%B %d, %Y" }}</p>
-  {{ content }}
+  <header class="article-header">
+    <h1>{{ page.title }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+      {% if page.author %}
+      <span class="author">by {{ page.author }}</span>
+      {% endif %}
+      {% if page.reading_time %}
+      <span class="reading-time">{{ page.reading_time }} min read</span>
+      {% endif %}
+    </div>
+  </header>
+  
+  <div class="article-content">
+    {{ content }}
+  </div>
+  
+  {% if page.tags %}
+  <footer class="article-footer">
+    <div class="tags">
+      <h4>Tags</h4>
+      <ul class="tag-list">
+        {% for tag in page.tags %}
+        <li class="tag">{{ tag }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </footer>
+  {% endif %}
+</article>
+
+<style>
+.article-header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 2px solid var(--gold-primary);
+}
+
+.article-content {
+  margin-bottom: var(--space-3xl);
+}
+
+.article-footer {
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-xl);
+  border-top: 2px solid rgba(212, 175, 55, 0.3);
+}
+
+.tags h4 {
+  margin-bottom: var(--space-lg);
+  color: var(--ink-medium);
+  font-size: var(--font-size-lg);
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tag {
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+  color: var(--ink-dark);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px var(--shadow-light);
+  transition: var(--transition-normal);
+}
+
+.tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+.post-meta .author::before {
+  content: '✒ ';
+  color: var(--gold-primary);
+}
+
+.post-meta .reading-time::before {
+  content: '⏱ ';
+  color: var(--gold-primary);
+}
+</style>

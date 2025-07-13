@@ -1,9 +1,9 @@
 # Site settings
-title: Squire Jekyll Theme
-description: A clean and minimalistic Jekyll theme
+title: The Noble Squire
+description: A medieval-inspired sanctuary for timeless wisdom and noble discourse
 baseurl: "/squire-jekyll-theme" # Leave empty if hosting at root, e.g., username.github.io
 url: "https://s2bd.github.io" # Update to your domain when deploying
-author: Your Name
+author: The Chronicler
 email: your.email@example.com
 
 # Build settings
