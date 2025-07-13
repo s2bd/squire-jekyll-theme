@@ -2,14 +2,21 @@
 layout: default
 title: Home
 ---
-# Welcome to {{ site.title }}
+<div class="card">
+  <div class="hero-section">
+    <h1>Welcome to {{ site.title }}</h1>
+    <p class="hero-subtitle">{{ site.description }}</p>
+  </div>
 
-Below are my latest blog posts:
+  <div class="posts-section">
+    <h2>Latest Articles</h2>
 
-{% for post in site.posts %}
-  <article>
-    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-    <p class="post-meta">{{ post.date | date: "%B %d, %Y" }}</p>
-    <p>{{ post.excerpt | strip_html | truncate: 200 }}</p>
-  </article>
-{% endfor %}
+    {% for post in site.posts %}
+      <div class="post-preview">
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p class="post-meta">{{ post.date | date: "%B %d, %Y" }}</p>
+        <p>{{ post.excerpt | strip_html | truncate: 200 }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
